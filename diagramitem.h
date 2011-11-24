@@ -35,6 +35,13 @@
      int type() const
          { return Type;}
 
+     int width() const
+        { return pixmap().width(); }
+
+     int height() const
+        { return pixmap().height(); }
+
+
  protected:
      void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
      QVariant itemChange(GraphicsItemChange change, const QVariant &value);
