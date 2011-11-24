@@ -25,8 +25,6 @@
          { return myFont; }
      QColor textColor() const
          { return myTextColor; }
-     QColor itemColor() const
-         { return myItemColor; }
      QColor lineColor() const
          { return myLineColor; }
      void setLineColor(const QColor &color);
@@ -61,7 +59,6 @@
      QFont myFont;
      DiagramTextItem *textItem;
      QColor myTextColor;
-     QColor myItemColor;
      QColor myLineColor;
  };
 

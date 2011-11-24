@@ -151,15 +151,6 @@
      textButtonTriggered();
  }
 
- void MainWindow::itemColorChanged()
- {
-     fillAction = qobject_cast<QAction *>(sender());
-     fillColorToolButton->setIcon(createColorToolButtonIcon(
-                  ":/images/floodfill.png",
-                  qVariantValue<QColor>(fillAction->data())));
-     fillButtonTriggered();
- }
-
  void MainWindow::lineColorChanged()
  {
      lineAction = qobject_cast<QAction *>(sender());
@@ -172,11 +163,6 @@
  void MainWindow::textButtonTriggered()
  {
      scene->setTextColor(qVariantValue<QColor>(textAction->data()));
- }
-
- void MainWindow::fillButtonTriggered()
- {
-     scene->setItemColor(qVariantValue<QColor>(fillAction->data()));
  }
 
  void MainWindow::lineButtonTriggered()
@@ -345,16 +331,6 @@
      connect(fontColorToolButton, SIGNAL(clicked()),
              this, SLOT(textButtonTriggered()));
 
-     fillColorToolButton = new QToolButton;
-     fillColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-     fillColorToolButton->setMenu(createColorMenu(SLOT(itemColorChanged()),
-                          Qt::white));
-     fillAction = fillColorToolButton->menu()->defaultAction();
-     fillColorToolButton->setIcon(createColorToolButtonIcon(
-     ":/images/floodfill.png", Qt::white));
-     connect(fillColorToolButton, SIGNAL(clicked()),
-             this, SLOT(fillButtonTriggered()));
-
      lineColorToolButton = new QToolButton;
      lineColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
      lineColorToolButton->setMenu(createColorMenu(SLOT(lineColorChanged()),
@@ -374,7 +350,6 @@
 
      colorToolBar = addToolBar(tr("Color"));
      colorToolBar->addWidget(fontColorToolButton);
-     colorToolBar->addWidget(fillColorToolButton);
      colorToolBar->addWidget(lineColorToolButton);
 
      QToolButton *pointerButton = new QToolButton;

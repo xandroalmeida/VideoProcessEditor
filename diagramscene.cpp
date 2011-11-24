@@ -12,7 +12,6 @@ DiagramScene::DiagramScene(QMenu *itemMenu, QObject *parent)
     myItemType = DiagramItem::VideoInput;
     line = 0;
     textItem = 0;
-    myItemColor = Qt::white;
     myTextColor = Qt::black;
     myLineColor = Qt::black;
 }
@@ -34,16 +33,6 @@ void DiagramScene::setTextColor(const QColor &color)
         DiagramTextItem *item =
                 qgraphicsitem_cast<DiagramTextItem *>(selectedItems().first());
         item->setDefaultTextColor(myTextColor);
-    }
-}
-
-void DiagramScene::setItemColor(const QColor &color)
-{
-    myItemColor = color;
-    if (isItemChange(DiagramItem::Type)) {
-        DiagramItem *item =
-                qgraphicsitem_cast<DiagramItem *>(selectedItems().first());
-        //item->setBrush(myItemColor);
     }
 }
 
@@ -91,7 +80,6 @@ void DiagramScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode) {
     case InsertItem:
         item = new DiagramItem(myItemType, myItemMenu);
-        //item->setBrush(myItemColor);
         addItem(item);
         item->setPos(mouseEvent->scenePos());
         emit itemInserted(item);
