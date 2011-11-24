@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>images/app_camera.png</file>
-        <file>images/action_filenew.png</file>
-    </qresource>
-</RCC>

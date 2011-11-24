@@ -1,11 +1,15 @@
-#include <QtGui/QApplication>
-#include "MainWindow.h"
+#include <QtGui>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+ #include "mainwindow.h"
 
-    return a.exec();
-}
+ int main(int argv, char *args[])
+ {
+     Q_INIT_RESOURCE(diagramscene);
+
+     QApplication app(argv, args);
+     MainWindow mainWindow;
+     mainWindow.setGeometry(100, 100, 800, 500);
+     mainWindow.show();
+
+     return app.exec();
+ }
