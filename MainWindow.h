@@ -30,6 +30,7 @@
  private slots:
      void buttonGroupClicked(int id);
      void deleteItem();
+     void editItem();
      void pointerGroupClicked(int id);
      void bringToFront();
      void sendToBack();
@@ -65,6 +66,7 @@
      QAction *exitAction;
      QAction *addAction;
      QAction *deleteAction;
+     QAction *editAction;
 
      QAction *toFrontAction;
      QAction *sendBackAction;

@@ -79,7 +79,7 @@ void DiagramScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     DiagramItem *item;
     switch (myMode) {
     case InsertItem:
-        item = new DiagramItem(myItemType, myItemMenu);
+        item = DiagramItem::factory(myItemType, myItemMenu);
         addItem(item);
         item->setPos(mouseEvent->scenePos());
         emit itemInserted(item);

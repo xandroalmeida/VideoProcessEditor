@@ -1,55 +1,58 @@
 #ifndef DIAGRAMITEM_H
- #define DIAGRAMITEM_H
+#define DIAGRAMITEM_H
 
- #include <QGraphicsPixmapItem>
- #include <QList>
+#include <QGraphicsPixmapItem>
+#include <QList>
+#include <QMenu>
+#include <QAction>
 
- class QPixmap;
- class QGraphicsItem;
- class QGraphicsScene;
- class QTextEdit;
- class QGraphicsSceneMouseEvent;
- class QMenu;
- class QGraphicsSceneContextMenuEvent;
- class QPainter;
- class QStyleOptionGraphicsItem;
- class QWidget;
- class QPolygonF;
+class QPixmap;
+class QGraphicsItem;
+class QGraphicsScene;
+class QTextEdit;
+class QGraphicsSceneMouseEvent;
+class QGraphicsSceneContextMenuEvent;
+class QPainter;
+class QStyleOptionGraphicsItem;
+class QWidget;
+class QPolygonF;
 
- class Arrow;
+class Arrow;
 
- class DiagramItem : public QGraphicsPixmapItem
- {
- public:
-     enum { Type = UserType + 15 };
-     enum DiagramType { VideoOutput, VideoInput, StartEnd, VideoProcess, VideoPropertie, VideoCrop };
+class DiagramItem : public QGraphicsPixmapItem
+{
 
-     DiagramItem(DiagramType diagramType, QMenu *contextMenu,
-         QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+public:
+    enum DiagramType { VideoOutput = UserType + 15, VideoInput, StartEnd, VideoProcessBlur, VideoPropertie, VideoCrop };
 
-     void removeArrow(Arrow *arrow);
-     void removeArrows();
-     DiagramType diagramType() const
-         { return myDiagramType; }
-     void addArrow(Arrow *arrow);
-     int type() const
-         { return Type;}
+    DiagramItem(QMenu *contextMenu, QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    virtual ~DiagramItem();
 
-     int width() const
+    void removeArrow(Arrow *arrow);
+    void removeArrows();
+    void addArrow(Arrow *arrow);
+
+    int type()
+        { return diagramType(); }
+
+    virtual DiagramItem::DiagramType diagramType() const = 0;
+    virtual QDialog* editDialog() = 0;
+
+    int width() const
         { return pixmap().width(); }
 
-     int height() const
+    int height() const
         { return pixmap().height(); }
 
+    static DiagramItem* factory(DiagramType diagramType, QMenu *contextMenu = 0);
 
- protected:
-     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
-     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+protected:
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
 
- private:
-     DiagramType myDiagramType;
-     QMenu *myContextMenu;
-     QList<Arrow *> arrows;
- };
+private:
+    QMenu *myContextMenu;
+    QList<Arrow *> arrows;
+};
 
- #endif
+#endif

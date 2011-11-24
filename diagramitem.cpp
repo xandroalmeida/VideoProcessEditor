@@ -1,41 +1,50 @@
 #include <QtGui>
 
 #include "diagramitem.h"
+#include "videoinputitem.h"
+#include "videoprocessbluritem.h"
+
 #include "arrow.h"
 
-DiagramItem::DiagramItem(DiagramType diagramType, QMenu *contextMenu,
+DiagramItem::DiagramItem(QMenu *contextMenu,
                          QGraphicsItem *parent, QGraphicsScene *scene)
     : QGraphicsPixmapItem(parent, scene)
 {
-    myDiagramType = diagramType;
     myContextMenu = contextMenu;
 
-    switch (myDiagramType) {
-    case StartEnd:
-        setPixmap(QPixmap(":/images/video_input"));
-        break;
-    case VideoInput:
-        setPixmap(QPixmap(":/images/video_input"));
-        break;
-    case VideoOutput:
-        setPixmap(QPixmap(":/images/video_output"));
-        break;
-    case VideoProcess:
-        setPixmap(QPixmap(":/images/video_process"));
-        break;
-    case VideoPropertie:
-        setPixmap(QPixmap(":/images/video_propertie"));
-        break;
-    case VideoCrop:
-        setPixmap(QPixmap(":/images/video_crop"));
-        break;
-    default:
-        setPixmap(QPixmap(":/images/video_input"));
-        break;
-    }
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
+}
+
+DiagramItem::~DiagramItem()
+{
+
+}
+
+DiagramItem* DiagramItem::factory(DiagramType diagramType, QMenu *contextMenu) {
+    DiagramItem* item = 0;
+    switch (diagramType) {
+    case VideoInput:
+        item = new VideoInputItem(contextMenu);
+        break;
+    case VideoOutput:
+        item = new VideoInputItem(contextMenu);
+        break;
+    case VideoProcessBlur:
+        item = new VideoProcessBlurItem(contextMenu);
+        break;
+    case VideoPropertie:
+        item = new VideoInputItem(contextMenu);
+        break;
+    case VideoCrop:
+        item = new VideoInputItem(contextMenu);
+        break;
+    default:
+        break;
+    }
+
+    return item;
 }
 
 void DiagramItem::removeArrow(Arrow *arrow)
