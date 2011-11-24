@@ -23,7 +23,7 @@ class DiagramItem : public QGraphicsPixmapItem
 {
 
 public:
-    enum DiagramType { VideoOutput = UserType + 15, VideoInput, StartEnd, VideoProcessBlur, VideoPropertie, VideoCrop };
+    enum DiagramType { VideoOutput = UserType + 15, VideoInput, StartEnd, VideoFilter, VideoPropertie, VideoCrop };
 
     DiagramItem(QMenu *contextMenu, QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
     virtual ~DiagramItem();

@@ -2,7 +2,7 @@
 
 #include "diagramitem.h"
 #include "videoinputitem.h"
-#include "videoprocessbluritem.h"
+#include "videofilteritem.h"
 
 #include "arrow.h"
 
@@ -31,8 +31,8 @@ DiagramItem* DiagramItem::factory(DiagramType diagramType, QMenu *contextMenu) {
     case VideoOutput:
         item = new VideoInputItem(contextMenu);
         break;
-    case VideoProcessBlur:
-        item = new VideoProcessBlurItem(contextMenu);
+    case VideoFilter:
+        item = new VideoFilterItem(contextMenu);
         break;
     case VideoPropertie:
         item = new VideoInputItem(contextMenu);

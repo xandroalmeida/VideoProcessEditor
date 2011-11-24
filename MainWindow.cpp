@@ -220,7 +220,7 @@ void MainWindow::createToolBox()
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(createCellWidget(tr("Video Input"), DiagramItem::VideoInput), 0, 0);
     layout->addWidget(createCellWidget(tr("Video Output"), DiagramItem::VideoOutput),0, 1);
-    layout->addWidget(createCellWidget(tr("Video Process Blur"), DiagramItem::VideoProcessBlur), 1, 0);
+    layout->addWidget(createCellWidget(tr("Video Filter"), DiagramItem::VideoFilter), 1, 0);
     layout->addWidget(createCellWidget(tr("Video Propertie"), DiagramItem::VideoPropertie), 2, 0);
     layout->addWidget(createCellWidget(tr("Video Crop"), DiagramItem::VideoCrop), 2, 1);
 
