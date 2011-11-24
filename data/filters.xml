@@ -1,0 +1,8 @@
+<filters>
+    <filter name="" function="">
+        <params>
+            <param name="kSize" type="int" minValue="0" maxValue="100"/>
+            <param name="kSize" type="int" minValue="0" maxValue="100"/>
+        <params>
+    </filter>
+</filters>
