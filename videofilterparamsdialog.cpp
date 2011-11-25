@@ -9,11 +9,9 @@ VideoFilterParamsDialog::VideoFilterParamsDialog(QWidget *parent) :
     ui(new Ui::VideoFilterParamsDialog)
 {
     ui->setupUi(this);
-    try {
-        FiltersData filters;
-    } catch (const char* msg) {
-        qDebug() << "Erro: " << msg;
-    }
+
+    ui->filterCb->clear();
+    ui->filterCb->insertItems(0, FiltersData::filtersName());
 }
 
 VideoFilterParamsDialog::~VideoFilterParamsDialog()

@@ -1,6 +1,8 @@
 #ifndef FILTERSDATA_H
 #define FILTERSDATA_H
 
+#include <QStringList>
+
 typedef struct {
     const char *name;
     const char *type;
@@ -18,7 +20,7 @@ class FiltersData
 {
 public:
     FiltersData();
-private:
+    static QStringList filtersName();
 
 private:
 };
