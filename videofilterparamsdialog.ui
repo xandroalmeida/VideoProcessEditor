@@ -33,7 +33,18 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="filterComboBox"/>
+      <widget class="QComboBox" name="filterCb">
+       <item>
+        <property name="text">
+         <string>New Item</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>New Item</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </item>
@@ -83,6 +94,9 @@
    <extends>QFrame</extends>
    <header>videofilterparamsform.h</header>
    <container>1</container>
+   <slots>
+    <slot>on_filterCb_change(QString)</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -116,6 +130,22 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filterCb</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>frame</receiver>
+   <slot>on_filterCb_change(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>214</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>46</y>
     </hint>
    </hints>
   </connection>

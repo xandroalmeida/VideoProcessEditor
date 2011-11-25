@@ -12,7 +12,7 @@ public:
 signals:
 
 public slots:
-
+    void on_filterCb_change(QString item);
 };
 
 #endif // VIDEOFILTERPARAMSFORM_H

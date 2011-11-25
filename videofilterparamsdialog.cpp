@@ -1,5 +1,6 @@
 #include "videofilterparamsdialog.h"
 #include "ui_videofilterparamsdialog.h"
+#include <QDebug>
 
 VideoFilterParamsDialog::VideoFilterParamsDialog(QWidget *parent) :
     QDialog(parent),
