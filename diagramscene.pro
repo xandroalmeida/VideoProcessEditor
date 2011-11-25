@@ -1,5 +1,8 @@
 QT       += xml
 
+#LIBS += -L ../cppunit-1.12.1-bin/lib -lcppunit
+#INCLUDEPATH  += ../cppunit-1.12.1-bin/include
+
  HEADERS     =   mainwindow.h \
                  diagramitem.h \
                  diagramscene.h \
@@ -8,6 +11,8 @@ QT       += xml
     videoinputitem.h \
     videoinputdialog.h \
     videofilteritem.h \
+    videofilterssettings.h \
+    videofilterparamsdialog.h \
     videofilterparamsform.h
  SOURCES     =   mainwindow.cpp \
                  diagramitem.cpp \
@@ -18,12 +23,15 @@ QT       += xml
     videoinputitem.cpp \
     videoinputdialog.cpp \
     videofilteritem.cpp \
+    videofilterssettings.cpp \
+    videofilterparamsdialog.cpp \
     videofilterparamsform.cpp
  RESOURCES   =   diagramscene.qrc
 
 
 FORMS += \
-    videoinputdialog.ui
+    videoinputdialog.ui \
+    videofilterparamsdialog.ui
 
 OTHER_FILES += \
     data/filters.xml
@@ -31,6 +39,21 @@ OTHER_FILES += \
 TEMPLATE = app
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
