@@ -13,7 +13,8 @@ QT       += xml
     videofilteritem.h \
     videofilterssettings.h \
     videofilterparamsdialog.h \
-    videofilterparamsform.h
+    videofilterparamsform.h \
+    filtersdata.h
  SOURCES     =   mainwindow.cpp \
                  diagramitem.cpp \
                  main.cpp \
@@ -25,7 +26,8 @@ QT       += xml
     videofilteritem.cpp \
     videofilterssettings.cpp \
     videofilterparamsdialog.cpp \
-    videofilterparamsform.cpp
+    videofilterparamsform.cpp \
+    filtersdata.cpp
  RESOURCES   =   diagramscene.qrc
 
 
@@ -39,6 +41,8 @@ OTHER_FILES += \
 TEMPLATE = app
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+
 
 
 

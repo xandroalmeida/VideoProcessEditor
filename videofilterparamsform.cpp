@@ -2,9 +2,11 @@
 #include <QFormLayout>
 #include <QLabel>
 
+
 VideoFilterParamsForm::VideoFilterParamsForm(QWidget *parent) :
     QFrame(parent)
 {
+
 }
 
 void VideoFilterParamsForm::on_filterCb_change(QString item)

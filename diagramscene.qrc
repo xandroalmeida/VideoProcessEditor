@@ -20,5 +20,6 @@
         <file>images/video_process.png</file>
         <file>images/video_crop.png</file>
         <file>images/video_propertie.png</file>
+        <file>data/filters.xml</file>
     </qresource>
 </RCC>
