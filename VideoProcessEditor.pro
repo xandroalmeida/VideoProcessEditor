@@ -3,6 +3,9 @@ QT       += xml
 #LIBS += -L ../cppunit-1.12.1-bin/lib -lcppunit
 #INCLUDEPATH  += ../cppunit-1.12.1-bin/include
 
+QMAKE_CXXFLAGS_RELEASE += -std=gnu++0x
+QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
+
  HEADERS     =   mainwindow.h \
                  diagramitem.h \
                  diagramscene.h \
@@ -28,7 +31,7 @@ QT       += xml
     videofilterparamsdialog.cpp \
     videofilterparamsform.cpp \
     filtersdata.cpp
- RESOURCES   =   diagramscene.qrc
+ RESOURCES   =   VideoProcessEditor.qrc
 
 
 FORMS += \

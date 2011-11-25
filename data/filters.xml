@@ -1,8 +1,8 @@
 <filters>
-    <filter name="" function="">
+    <filter name="blur">
         <params>
-            <param name="kSize" type="int" minValue="0" maxValue="100"/>
-            <param name="kSize" type="int" minValue="0" maxValue="100"/>
-        <params>
+            <param name="kSize" type="int" minValue="0" maxValue="100"></param>
+            <param name="xx" type="int" minValue="9" maxValue="99"></param>
+        </params>
     </filter>
 </filters>
