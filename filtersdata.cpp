@@ -2,26 +2,26 @@
 
 #include <QDebug>
 #include <QFile>
-static Filter filters[] = {
+static const Filter filters[] = {
     {
         name : "bilateralFilter",
         nParams: 3,
         params: {
             {
                 name: "d",
-                type: "int",
+                type: IntegerType,
                 minValue: -999.0,
                 maxValue: 999.0
             },
             {
                 name: "sigmaColor",
-                type: "int",
+                type: IntegerType,
                 minValue: -999.0,
                 maxValue: 999.0
             },
             {
                 name: "sigmaSpace",
-                type: "int",
+                type: IntegerType,
                 minValue: -999.0,
                 maxValue: 999.0
             }
@@ -33,7 +33,7 @@ static Filter filters[] = {
         params: {
             {
                 name: "kSize",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             }
@@ -45,7 +45,7 @@ static Filter filters[] = {
         params: {
             {
                 name: "kSize",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             }
@@ -57,7 +57,7 @@ static Filter filters[] = {
         params: {
             {
                 name: "maxlevel",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             }
@@ -69,25 +69,25 @@ static Filter filters[] = {
         params: {
             {
                 name: "top",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             },
             {
                 name: "bottom",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             },
             {
                 name: "left",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             },
             {
                 name: "right",
-                type: "int",
+                type: IntegerType,
                 minValue: 0.0,
                 maxValue: 999.0
             }
@@ -117,3 +117,15 @@ QStringList FiltersData::filtersName()
     return list;
 }
 
+const Filter* FiltersData::getFilter(const char* filterName)
+{
+    int idx = 0;
+    while (QString(filters[idx].name) != "") {
+        if (QString(filters[idx].name) == QString(filterName)) {
+            return &filters[idx];
+        }
+        idx++;
+    }
+
+    return NULL;
+}

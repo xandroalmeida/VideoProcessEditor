@@ -3,9 +3,13 @@
 
 #include <QStringList>
 
+typedef enum {
+    IntegerType, DoubleType
+} ParamType;
+
 typedef struct {
     const char *name;
-    const char *type;
+    const ParamType type;
     const double minValue;
     const double maxValue;
 } FilterParam;
@@ -21,6 +25,7 @@ class FiltersData
 public:
     FiltersData();
     static QStringList filtersName();
+    static const Filter* getFilter(const char* filterName);
 
 private:
 };
