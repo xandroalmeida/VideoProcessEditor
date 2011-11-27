@@ -30,6 +30,7 @@
  private slots:
      void buttonGroupClicked(int id);
      void deleteItem();
+     void onPlayAction();
      void editItem();
      void onEditDlgOk(QDialog* dlg);
      void pointerGroupClicked(int id);
@@ -65,6 +66,7 @@
      QGraphicsView *view;
 
      QAction *exitAction;
+     QAction *playtAction;
      QAction *addAction;
      QAction *deleteAction;
      QAction *editAction;

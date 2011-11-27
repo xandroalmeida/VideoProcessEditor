@@ -1,6 +1,9 @@
 #include <QtGui>
 #include <QLabel>
 
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+
 #include "mainwindow.h"
 #include "diagramitem.h"
 #include "diagramscene.h"
@@ -67,6 +70,13 @@ void MainWindow::onEditDlgOk(QDialog* dlg)
     //DiagramItem *item = (DiagramItem*)scene->selectedItems().first();
 
     qDebug() << " MainWindow::onEditDlgOk()";
+}
+
+
+void MainWindow::onPlayAction()
+{
+    cv::VideoCapture cap;
+    qDebug() << "MainWindow::playAction()";
 }
 
 void MainWindow::deleteItem()
@@ -230,8 +240,8 @@ void MainWindow::createToolBox()
     layout->addWidget(createCellWidget(tr("Video Input"), DiagramItem::VideoInput), 0, 0);
     layout->addWidget(createCellWidget(tr("Video Output"), DiagramItem::VideoOutput),0, 1);
     layout->addWidget(createCellWidget(tr("Video Filter"), DiagramItem::VideoFilter), 1, 0);
-    layout->addWidget(createCellWidget(tr("Video Propertie"), DiagramItem::VideoPropertie), 2, 0);
-    layout->addWidget(createCellWidget(tr("Video Crop"), DiagramItem::VideoCrop), 2, 1);
+    //layout->addWidget(createCellWidget(tr("Video Propertie"), DiagramItem::VideoPropertie), 2, 0);
+    //layout->addWidget(createCellWidget(tr("Video Crop"), DiagramItem::VideoCrop), 2, 1);
 
     QToolButton *textButton = new QToolButton;
     textButton->setCheckable(true);
@@ -264,6 +274,11 @@ void MainWindow::createActions()
     deleteAction->setShortcut(tr("Delete"));
     deleteAction->setStatusTip(tr("Delete item from diagram"));
     connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteItem()));
+
+    playtAction = new QAction(QIcon(":/images/play.png"), tr("&Play"), this);
+    playtAction->setShortcut(tr("Ctrl+P"));
+    playtAction->setStatusTip(tr(""));
+    connect(playtAction, SIGNAL(triggered()), this, SLOT(onPlayAction()));
 
     editAction = new QAction(QIcon(":/images/delete.png"), tr("&Edit"), this);
     editAction->setShortcut(tr("Ctrl+E"));
@@ -326,8 +341,9 @@ void MainWindow::createMenus()
 
 void MainWindow::createToolbars()
 {
-#ifdef false
     editToolBar = addToolBar(tr("Edit"));
+    editToolBar->addAction(playtAction);
+#ifdef false
     editToolBar->addAction(deleteAction);
     editToolBar->addAction(toFrontAction);
     editToolBar->addAction(sendBackAction);
