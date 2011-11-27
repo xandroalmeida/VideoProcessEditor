@@ -140,13 +140,19 @@ void DiagramScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                     qgraphicsitem_cast<DiagramItem *>(startItems.first());
             DiagramItem *endItem =
                     qgraphicsitem_cast<DiagramItem *>(endItems.first());
-            Arrow *arrow = new Arrow(startItem, endItem);
-            arrow->setColor(myLineColor);
-            startItem->addArrow(arrow);
-            endItem->addArrow(arrow);
-            arrow->setZValue(-1000.0);
-            addItem(arrow);
-            arrow->updatePosition();
+
+            if (endItem->diagramType() == DiagramItem::VideoInput
+                    || startItem->diagramType() == DiagramItem::VideoOutput) {
+
+            } else {
+                Arrow *arrow = new Arrow(startItem, endItem);
+                arrow->setColor(myLineColor);
+                startItem->addArrow(arrow);
+                endItem->addArrow(arrow);
+                arrow->setZValue(-1000.0);
+                addItem(arrow);
+                arrow->updatePosition();
+            }
         }
     }
     line = 0;

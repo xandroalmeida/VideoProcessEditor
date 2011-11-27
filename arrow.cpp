@@ -57,10 +57,15 @@ void Arrow::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     //QPolygonF endPolygon = myEndItem->polygon();
     QPointF p1 = myStartItem->pos();
     QPointF p2 = myEndItem->pos();
-    qDebug() << "p2.x=" << p2.x() << "  p1.x=" <<  p1.x();
+
     if (p2.x() > p1.x()) {
         p1.setX(p1.x() + myStartItem->width());
-        p1.setY(p1.y()+(myStartItem->height()/2));
+        p1.setY(p1.y()+ (myStartItem->height()/2));
+        p2.setY(p2.y()+ (myEndItem->height()/2));
+    }
+
+    if (p2.y() > p1.y()) {
+
     }
 
     setLine(QLineF(p2, p1));

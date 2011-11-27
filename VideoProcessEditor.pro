@@ -1,7 +1,14 @@
 QT       += xml
 
-#LIBS += -L ../cppunit-1.12.1-bin/lib -lcppunit
-#INCLUDEPATH  += ../cppunit-1.12.1-bin/include
+INCLUDEPATH  += C:\\opt\\opencv_mingw32\\install\\include\\opencv
+INCLUDEPATH  += C:\\opt\\opencv_mingw32\\install\\include
+
+LIBS += -L C:\\opt\\opencv_mingw32\\install\\lib
+LIBS += -lopencv_core231 -lopencv_flann231 -lopencv_imgproc231 -lopencv_highgui231
+LIBS += -lopencv_ml231 -lopencv_video231 -lopencv_objdetect231 -lopencv_features2d231
+LIBS += -lopencv_calib3d231 -lopencv_legacy231 -lopencv_contrib231
+#LIBS += -lgdi32 -lcomctl32 -lcomdlg32 -luuid -loleaut32 -lole32 -lavifil32 -lavicap32 -lvfw32
+#LIBS += -lzlib -llibtiff -llibjasper -llibjpeg -llibpng
 
 QMAKE_CXXFLAGS_RELEASE += -std=gnu++0x
 QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
@@ -17,7 +24,8 @@ QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
     videofilterssettings.h \
     videofilterparamsdialog.h \
     videofilterparamsform.h \
-    filtersdata.h
+    filtersdata.h \
+    videooutputitem.h
  SOURCES     =   mainwindow.cpp \
                  diagramitem.cpp \
                  main.cpp \
@@ -30,7 +38,8 @@ QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
     videofilterssettings.cpp \
     videofilterparamsdialog.cpp \
     videofilterparamsform.cpp \
-    filtersdata.cpp
+    filtersdata.cpp \
+    videooutputitem.cpp
  RESOURCES   =   VideoProcessEditor.qrc
 
 
@@ -44,6 +53,8 @@ OTHER_FILES += \
 TEMPLATE = app
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+
 
 
 

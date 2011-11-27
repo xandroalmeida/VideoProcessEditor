@@ -31,6 +31,7 @@
      void buttonGroupClicked(int id);
      void deleteItem();
      void editItem();
+     void onEditDlgOk(QDialog* dlg);
      void pointerGroupClicked(int id);
      void bringToFront();
      void sendToBack();

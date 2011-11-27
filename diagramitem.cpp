@@ -2,6 +2,7 @@
 
 #include "diagramitem.h"
 #include "videoinputitem.h"
+#include "videooutputitem.h"
 #include "videofilteritem.h"
 
 #include "arrow.h"
@@ -29,7 +30,7 @@ DiagramItem* DiagramItem::factory(DiagramType diagramType, QMenu *contextMenu) {
         item = new VideoInputItem(contextMenu);
         break;
     case VideoOutput:
-        item = new VideoInputItem(contextMenu);
+        item = new VideoOutputItem(contextMenu);
         break;
     case VideoFilter:
         item = new VideoFilterItem(contextMenu);

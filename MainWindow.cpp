@@ -55,8 +55,18 @@ void MainWindow::editItem()
     if (scene->selectedItems().isEmpty())
         return;
 
-    DiagramItem *item = (DiagramItem*)scene->selectedItems().first();
-    item->editDialog()->show();
+    DiagramItem* item = (DiagramItem*)scene->selectedItems().first();
+    QDialog* dlg = item->editDialog();
+    QObject::connect(dlg, SIGNAL(accepted()), this, SLOT(onEditDlgOk(dlg)));
+    dlg->show();
+}
+
+
+void MainWindow::onEditDlgOk(QDialog* dlg)
+{
+    //DiagramItem *item = (DiagramItem*)scene->selectedItems().first();
+
+    qDebug() << " MainWindow::onEditDlgOk()";
 }
 
 void MainWindow::deleteItem()
@@ -206,9 +216,8 @@ void MainWindow::itemSelected(QGraphicsItem *item)
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About Diagram Scene"),
-                       tr("The <b>Diagram Scene</b> example shows "
-                          "use of the graphics framework."));
+    QMessageBox::about(this, tr("About"),
+                       tr("Este é um protótipo do editor de processamento de visão."));
 }
 
 void MainWindow::createToolBox()
@@ -317,45 +326,42 @@ void MainWindow::createMenus()
 
 void MainWindow::createToolbars()
 {
+#ifdef false
     editToolBar = addToolBar(tr("Edit"));
     editToolBar->addAction(deleteAction);
     editToolBar->addAction(toFrontAction);
     editToolBar->addAction(sendBackAction);
+#endif
 
     fontCombo = new QFontComboBox();
-    connect(fontCombo, SIGNAL(currentFontChanged(QFont)),
-            this, SLOT(currentFontChanged(QFont)));
+    connect(fontCombo, SIGNAL(currentFontChanged(QFont)), this, SLOT(currentFontChanged(QFont)));
 
     fontSizeCombo = new QComboBox;
     fontSizeCombo->setEditable(true);
     for (int i = 8; i < 30; i = i + 2)
         fontSizeCombo->addItem(QString().setNum(i));
+
     QIntValidator *validator = new QIntValidator(2, 64, this);
     fontSizeCombo->setValidator(validator);
-    connect(fontSizeCombo, SIGNAL(currentIndexChanged(QString)),
-            this, SLOT(fontSizeChanged(QString)));
+    connect(fontSizeCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(fontSizeChanged(QString)));
 
     fontColorToolButton = new QToolButton;
     fontColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
     fontColorToolButton->setMenu(createColorMenu(SLOT(textColorChanged()),
                                                  Qt::black));
     textAction = fontColorToolButton->menu()->defaultAction();
-    fontColorToolButton->setIcon(createColorToolButtonIcon(
-                                     ":/images/textpointer.png", Qt::black));
+    fontColorToolButton->setIcon(createColorToolButtonIcon(":/images/textpointer.png", Qt::black));
     fontColorToolButton->setAutoFillBackground(true);
-    connect(fontColorToolButton, SIGNAL(clicked()),
-            this, SLOT(textButtonTriggered()));
+    connect(fontColorToolButton, SIGNAL(clicked()), this, SLOT(textButtonTriggered()));
 
     lineColorToolButton = new QToolButton;
     lineColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    lineColorToolButton->setMenu(createColorMenu(SLOT(lineColorChanged()),
-                                                 Qt::black));
+    lineColorToolButton->setMenu(createColorMenu(SLOT(lineColorChanged()), Qt::black));
     lineAction = lineColorToolButton->menu()->defaultAction();
-    lineColorToolButton->setIcon(createColorToolButtonIcon(
-                                     ":/images/linecolor.png", Qt::black));
-    connect(lineColorToolButton, SIGNAL(clicked()),
-            this, SLOT(lineButtonTriggered()));
+    lineColorToolButton->setIcon(createColorToolButtonIcon(":/images/linecolor.png", Qt::black));
+    connect(lineColorToolButton, SIGNAL(clicked()), this, SLOT(lineButtonTriggered()));
 
+#ifdef false
     textToolBar = addToolBar(tr("Font"));
     textToolBar->addWidget(fontCombo);
     textToolBar->addWidget(fontSizeCombo);
@@ -366,7 +372,7 @@ void MainWindow::createToolbars()
     colorToolBar = addToolBar(tr("Color"));
     colorToolBar->addWidget(fontColorToolButton);
     colorToolBar->addWidget(lineColorToolButton);
-
+#endif
     QToolButton *pointerButton = new QToolButton;
     pointerButton->setCheckable(true);
     pointerButton->setChecked(true);
@@ -377,18 +383,15 @@ void MainWindow::createToolbars()
 
     pointerTypeGroup = new QButtonGroup(this);
     pointerTypeGroup->addButton(pointerButton, int(DiagramScene::MoveItem));
-    pointerTypeGroup->addButton(linePointerButton,
-                                int(DiagramScene::InsertLine));
-    connect(pointerTypeGroup, SIGNAL(buttonClicked(int)),
-            this, SLOT(pointerGroupClicked(int)));
+    pointerTypeGroup->addButton(linePointerButton, int(DiagramScene::InsertLine));
+    connect(pointerTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(pointerGroupClicked(int)));
 
     sceneScaleCombo = new QComboBox;
     QStringList scales;
     scales << tr("50%") << tr("75%") << tr("100%") << tr("125%") << tr("150%");
     sceneScaleCombo->addItems(scales);
     sceneScaleCombo->setCurrentIndex(2);
-    connect(sceneScaleCombo, SIGNAL(currentIndexChanged(QString)),
-            this, SLOT(sceneScaleChanged(QString)));
+    connect(sceneScaleCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(sceneScaleChanged(QString)));
 
     pointerToolbar = addToolBar(tr("Pointer type"));
     pointerToolbar->addWidget(pointerButton);
@@ -396,8 +399,7 @@ void MainWindow::createToolbars()
     pointerToolbar->addWidget(sceneScaleCombo);
 }
 
-QWidget *MainWindow::createBackgroundCellWidget(const QString &text,
-                                                const QString &image)
+QWidget *MainWindow::createBackgroundCellWidget(const QString &text, const QString &image)
 {
     QToolButton *button = new QToolButton;
     button->setText(text);

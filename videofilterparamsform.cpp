@@ -16,7 +16,7 @@ VideoFilterParamsForm::VideoFilterParamsForm(QWidget *parent) :
 
 void VideoFilterParamsForm::on_filterCb_change(QString item)
 {
-    static int row = 0;
+    //static int row = 0;
     QFormLayout* formlayout = (QFormLayout*)layout();
 
     QLayoutItem* layoutItem;
