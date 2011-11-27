@@ -1,9 +1,6 @@
 #include <QtGui>
 #include <QLabel>
 
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-
 #include "mainwindow.h"
 #include "diagramitem.h"
 #include "diagramscene.h"
@@ -75,8 +72,10 @@ void MainWindow::onEditDlgOk(QDialog* dlg)
 
 void MainWindow::onPlayAction()
 {
-    cv::VideoCapture cap;
-    qDebug() << "MainWindow::playAction()";
+    ShowVideoDialog* dlg = new ShowVideoDialog(this);
+    m_videoPlay = new VideoPlayThread(dlg, this);
+    dlg->show();
+    m_videoPlay->start();
 }
 
 void MainWindow::deleteItem()

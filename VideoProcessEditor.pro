@@ -1,9 +1,9 @@
-QT       += xml
+QT       += xml testlib
 
-INCLUDEPATH  += C:\\opt\\opencv_mingw32\\install\\include\\opencv
-INCLUDEPATH  += C:\\opt\\opencv_mingw32\\install\\include
+INCLUDEPATH  += C:\\opt\\opencv_mingw32_QT\\install\\include\\opencv
+INCLUDEPATH  += C:\\opt\\opencv_mingw32_QT\\install\\include
 
-LIBS += -L C:\\opt\\opencv_mingw32\\install\\lib
+LIBS += -L C:\\opt\\opencv_mingw32_QT\\install\\lib
 LIBS += -L C:\\opt\\opencv_mingw32\\install\\share\\OpenCV\\3rdparty\\lib
 
 LIBS += -lopencv_flann231 -lopencv_imgproc231 -lopencv_highgui231
@@ -27,7 +27,9 @@ QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
     videofilterparamsdialog.h \
     videofilterparamsform.h \
     filtersdata.h \
-    videooutputitem.h
+    videooutputitem.h \
+    videoplaythread.h \
+    showvideodialog.h
  SOURCES     =   mainwindow.cpp \
                  diagramitem.cpp \
                  main.cpp \
@@ -41,13 +43,16 @@ QMAKE_CXXFLAGS_DEBUG += -std=gnu++0x
     videofilterparamsdialog.cpp \
     videofilterparamsform.cpp \
     filtersdata.cpp \
-    videooutputitem.cpp
+    videooutputitem.cpp \
+    videoplaythread.cpp \
+    showvideodialog.cpp
  RESOURCES   =   VideoProcessEditor.qrc
 
 
 FORMS += \
     videoinputdialog.ui \
-    videofilterparamsdialog.ui
+    videofilterparamsdialog.ui \
+    showvideodialog.ui
 
 OTHER_FILES += \
     data/filters.xml
@@ -55,6 +60,11 @@ OTHER_FILES += \
 TEMPLATE = app
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+
+
+
+
 
 
 
